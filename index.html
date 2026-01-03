@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 7th Birthday Abdullah!</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Montserrat:wght@400;600;800&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'royal-blue': '#4169E1',
+                        'gold': '#FFD700',
+                    },
+                    fontFamily: {
+                        'fredoka': ['Fredoka', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'handwritten': ['Pacifico', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-animated font-montserrat overflow-x-hidden selection:bg-gold selection:text-royal-blue text-slate-800">
+
+    <!-- Music Element -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/birthday_song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Toggle -->
+    <button id="music-toggle"
+        class="fixed bottom-6 right-6 z-50 bg-white/20 backdrop-blur-md border border-white/40 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:bg-white/40 transition-all hover:scale-110 active:scale-95 animate-bounce-slow ring-2 ring-white/50">
+        <i class="fa-solid fa-music text-xl drop-shadow-md"></i>
+    </button>
+
+    <!-- Balloons Container -->
+    <div id="balloons-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden h-full w-full">
+        <div class="balloon-anim bg-red-400 opacity-70 w-20 h-24 absolute -bottom-32 left-[10%] rounded-full shadow-lg border-l-4 border-white/20"></div>
+        <div class="balloon-anim bg-blue-400 opacity-70 w-16 h-20 absolute -bottom-32 left-[30%] rounded-full delay-1000 shadow-lg border-l-4 border-white/20"></div>
+        <div class="balloon-anim bg-yellow-400 opacity-70 w-24 h-28 absolute -bottom-32 left-[60%] rounded-full delay-2000 shadow-lg border-l-4 border-white/20"></div>
+        <div class="balloon-anim bg-purple-400 opacity-70 w-14 h-18 absolute -bottom-32 left-[80%] rounded-full delay-500 shadow-lg border-l-4 border-white/20"></div>
+        <div class="balloon-anim bg-green-400 opacity-70 w-18 h-22 absolute -bottom-32 left-[45%] rounded-full delay-1500 shadow-lg border-l-4 border-white/20"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="relative z-10 w-full min-h-screen flex flex-col items-center">
+
+        <!-- Hero Section -->
+        <section class="min-h-screen flex flex-col items-center justify-center text-center p-6 w-full relative">
+            
+            <div class="glass-card rounded-[2rem] p-8 md:p-14 max-w-4xl mx-auto transform transition hover:scale-[1.01] duration-500">
+                <span
+                    class="inline-block py-2 px-6 rounded-full bg-gradient-to-r from-gold to-orange-400 text-white font-bold tracking-widest mb-8 shadow-lg transform -rotate-1 border-2 border-white/50">
+                    <i class="fa-solid fa-cake-candles mr-2"></i> IT'S PARTY TIME!
+                </span>
+
+                <h1 class="text-6xl md:text-9xl font-fredoka font-bold mb-6 animate-float rainbow-text drop-shadow-xl tracking-wide leading-tight">
+                    Happy Birthday<br>Abdullah!
+                </h1>
+
+                <div class="text-3xl md:text-5xl text-white font-bold mb-10 drop-shadow-md font-handwritten">
+                    Turning <span class="text-yellow-300 text-6xl">7</span> Years Old!
+                </div>
+
+                <!-- Countdown Timer -->
+                <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 my-10 max-w-3xl mx-auto">
+                    <!-- Days -->
+                    <div class="countdown-item glass p-4 rounded-xl shadow-lg border-b-4 border-blue-500">
+                        <span id="days" class="block text-5xl font-fredoka font-bold text-royal-blue drop-shadow-sm">00</span>
+                        <span class="text-xs md:text-sm font-bold text-gray-600 uppercase tracking-widest mt-1">Days</span>
+                    </div>
+                    <!-- Hours -->
+                    <div class="countdown-item glass p-4 rounded-xl shadow-lg border-b-4 border-pink-500">
+                        <span id="hours" class="block text-5xl font-fredoka font-bold text-pink-500 drop-shadow-sm">00</span>
+                        <span class="text-xs md:text-sm font-bold text-gray-600 uppercase tracking-widest mt-1">Hours</span>
+                    </div>
+                    <!-- Minutes -->
+                    <div class="countdown-item glass p-4 rounded-xl shadow-lg border-b-4 border-purple-500">
+                        <span id="minutes" class="block text-5xl font-fredoka font-bold text-purple-600 drop-shadow-sm">00</span>
+                        <span class="text-xs md:text-sm font-bold text-gray-600 uppercase tracking-widest mt-1">Minutes</span>
+                    </div>
+                    <!-- Seconds -->
+                    <div class="countdown-item glass p-4 rounded-xl shadow-lg border-b-4 border-green-500">
+                        <span id="seconds" class="block text-5xl font-fredoka font-bold text-green-600 drop-shadow-sm">00</span>
+                        <span class="text-xs md:text-sm font-bold text-gray-600 uppercase tracking-widest mt-1">Seconds</span>
+                    </div>
+                </div>
+
+                <button onclick="scrollToGallery()"
+                    class="mt-6 bg-white text-royal-blue px-10 py-4 rounded-full font-bold text-xl shadow-2xl hover:bg-gray-100 transition-all hover:-translate-y-1 hover:shadow-royal-blue/30 ring-4 ring-white/30">
+                    See Memories <i class="fa-solid fa-arrow-down ml-2 animate-bounce"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="w-full py-24 px-4 bg-white/30 backdrop-blur-sm -skew-y-2 relative mt-10">
+            <div class="skew-y-2 max-w-6xl mx-auto"> <!-- Correct skew for content -->
+                <h2 class="text-5xl md:text-6xl font-fredoka font-bold text-center text-white drop-shadow-lg mb-16 text-shadow-md">
+                    <i class="fa-solid fa-camera-retro text-yellow-300 mr-4 animate-pulse"></i>Memories
+                </h2>
+
+                <!-- Simple Carousel Wrapper -->
+                <div class="max-w-5xl mx-auto relative group p-4 glass rounded-[2.5rem]">
+                    <div id="carousel-track"
+                        class="overflow-hidden rounded-3xl shadow-2xl relative aspect-video bg-gray-900 border-4 border-white/50">
+                        <div class="flex transition-transform duration-700 ease-in-out h-full w-full" id="carousel-slides">
+                            <!-- Slides -->
+                            <div class="min-w-full h-full flex items-center justify-center bg-gray-100 relative">
+                                <img src="assets/images/photo1.jpg" class="absolute inset-0 w-full h-full object-cover" onerror="this.src='https://placehold.co/800x600?text=Photo+1'">
+                            </div>
+                            <div class="min-w-full h-full flex items-center justify-center bg-gray-100 relative">
+                                <img src="assets/images/photo2.jpg" class="absolute inset-0 w-full h-full object-cover" onerror="this.src='https://placehold.co/800x600?text=Photo+2'">
+                            </div>
+                            <div class="min-w-full h-full flex items-center justify-center bg-gray-100 relative">
+                                <img src="assets/images/photo3.jpg" class="absolute inset-0 w-full h-full object-cover" onerror="this.src='https://placehold.co/800x600?text=Photo+3'">
+                            </div>
+                            <div class="min-w-full h-full flex items-center justify-center bg-gray-100 relative">
+                                <img src="assets/images/photo4.jpg" class="absolute inset-0 w-full h-full object-cover" onerror="this.src='https://placehold.co/800x600?text=Photo+4'">
+                            </div>
+                            <!-- More slides can be added dynamically or statically -->
+                        </div>
+
+                        <!-- Controls -->
+                        <button id="prevBtn"
+                            class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md p-4 rounded-full shadow-lg hover:bg-white/40 text-white transition-all hover:scale-110">
+                            <i class="fa-solid fa-chevron-left text-2xl"></i>
+                        </button>
+                        <button id="nextBtn"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-md p-4 rounded-full shadow-lg hover:bg-white/40 text-white transition-all hover:scale-110">
+                            <i class="fa-solid fa-chevron-right text-2xl"></i>
+                        </button>
+
+                        <!-- Indicators -->
+                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 bg-black/20 p-2 rounded-full backdrop-blur-sm">
+                            <div class="w-3 h-3 rounded-full bg-white indicator shadow-sm cursor-pointer transition-all hover:scale-125"></div>
+                            <div class="w-3 h-3 rounded-full bg-white/40 indicator shadow-sm cursor-pointer transition-all hover:scale-125"></div>
+                            <div class="w-3 h-3 rounded-full bg-white/40 indicator shadow-sm cursor-pointer transition-all hover:scale-125"></div>
+                            <div class="w-3 h-3 rounded-full bg-white/40 indicator shadow-sm cursor-pointer transition-all hover:scale-125"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Birthday Card Section -->
+        <section class="w-full py-28 px-6 bg-gradient-to-t from-white/10 to-transparent flex justify-center">
+            <div
+                class="max-w-3xl w-full bg-white p-10 md:p-16 rounded-[2.5rem] shadow-2xl relative border-[6px] border-gold/40 transform rotate-1 hover:rotate-0 transition-transform duration-500 hover:shadow-gold/20">
+                <!-- Decorative Tape -->
+                <div
+                    class="absolute -top-6 left-1/2 -translate-x-1/2 w-40 h-14 bg-blue-500/10 backdrop-blur-sm -rotate-2 shadow-sm border border-white/40">
+                </div>
+
+                <div class="text-center relative z-10">
+                    <h2 class="text-4xl md:text-6xl font-handwritten text-royal-blue mb-10 drop-shadow-sm transform -rotate-2">
+                        A Special Message ❤️
+                    </h2>
+
+                    <div class="relative py-12 px-8 bg-slate-50 rounded-2xl border-2 border-dashed border-royal-blue/30 mx-2">
+                        <i class="fa-solid fa-star text-gold text-4xl absolute -top-5 -left-4 animate-spin-slow drop-shadow-md"></i>
+                        <i class="fa-solid fa-heart text-pink-500 text-4xl absolute -bottom-5 -right-4 animate-bounce drop-shadow-md"></i>
+
+                        <p class="text-2xl md:text-3xl text-gray-700 leading-loose font-fredoka font-medium">
+                            "Happy <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 font-bold text-4xl">7th</span> Birthday! <br><br>
+                            May your day be filled with endless laughter, yummy cake, and super cool surprises.
+                            We love you to the moon and back!"
+                        </p>
+                    </div>
+
+                    <div class="mt-10 font-handwritten text-4xl text-gray-400">
+                        - With Love, Your Family
+                    </div>
+                </div>
+                
+                <!-- Corner decorations -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-gold/20 rounded-bl-[4rem] rounded-tr-[2rem]"></div>
+                <div class="absolute bottom-0 left-0 w-20 h-20 bg-royal-blue/10 rounded-tr-[4rem] rounded-bl-[2rem]"></div>
+            </div>
+        </section>
+
+        <footer class="w-full py-10 text-center text-white font-bold text-lg relative z-10">
+            <p class="drop-shadow-md">Made with ❤️ for Abdullah</p>
+            <p class="mt-2 text-sm opacity-80 font-normal">&copy; 2025 Birthday Celebration</p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
